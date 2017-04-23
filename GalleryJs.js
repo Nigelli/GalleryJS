@@ -5,7 +5,11 @@
 
 /* TODO:
   1: add and remove loading image for thumbnails and images
-  2:
+  2: work out the best way to manage the image slider for the main gallery
+  3: work out which animations/interaction shuld happen on the slider vs previews
+  4: link thumbnails to images
+  5: load images from html elements attached to the gallery element
+  6: auto resize components to available parent containers
 */
 
 {
