@@ -23,15 +23,17 @@ Add the following tag to the header of your page. making sure you set the src to
 Add an script tag at the bottom of your `body` tag.
 You need to create a new instance of the gallery inside this tag. See the example below.
 
-`var gallery1 = new LittleGalleryJS.Gallery(`
-`   [`
-`       '/path/to/image1.jpg'`
-`   ],`
-`   {`
-`       sliderContainerID: 'gallerySliderArea', `
-`       toolbarContainerID: 'galleryToolbarArea' `
-`   }`
-`);`
+```
+var gallery1 = new LittleGalleryJS.Gallery(
+   [
+       '/path/to/image1.jpg'
+   ],
+   {
+       sliderContainerID: 'gallerySliderArea', 
+       toolbarContainerID: 'galleryToolbarArea' 
+   }
+);
+```
 
 This will add a new gallery with the main slider with seperate controls.
 
@@ -45,4 +47,9 @@ This will add a new gallery with the main slider with seperate controls.
 ### Optional
 
 1. ID's for the element you would like the house the preview bar and or the toolbar.
-`{ toolbarContainerID: yourToolbarElementsID, previewBarContainerID: yourpreviewBarElementsID }`
+```
+{ 
+    toolbarContainerID: yourToolbarElementsID, 
+    previewBarContainerID: yourpreviewBarElementsID 
+}
+```
