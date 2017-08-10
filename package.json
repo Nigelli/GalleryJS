@@ -4,9 +4,10 @@
   "description": "Javascript Gallery Plugin",
   "main": "GalleryJs.js",
   "dependencies": {
-    "babel-loader": "^7.1.1"
   },
   "devDependencies": {
+    "babel-loader": "^7.1.1",
+    "babel-core": "^6.25.0",
     "html-loader": "^0.5.1"
   },
   "scripts": {

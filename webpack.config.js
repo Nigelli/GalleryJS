@@ -1,8 +1,12 @@
 module.exports = {
-    entry  : './src/Gallery.js',
+    entry  : {
+        'gallery.dist': './src/Gallery.js'
+    },
     output : {
-        path     : __dirname,
-        filename : './dist/gallery.dist.js'
+        path     : __dirname + '/dist',
+        filename : '[name].js',
+        libraryTarget: 'var',
+        library: 'LittleGalleryJS'
     },
     module : {
         loaders: [ 

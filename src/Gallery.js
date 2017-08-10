@@ -17,85 +17,81 @@ import sliderAreaTemplate from "./slider-area/slider-area.html";
   5: load images from html elements attached to the gallery element
   6: auto resize components to available parent containers
 */
+class Gallery {
+  constructor(images = [], thumbnails = true) {
+    this._PreviewArea = this.getPreviewArea();
+    this._ButtonArea = this.getButtonArea();
+    this._SliderArea = this.getSliderArea();
+    if (!this._PreviewArea || !this._ButtonArea || !this._SliderArea) {
+      return error('Failed to initialize Gallery, Check that you have included the required elements');
+    }
 
-{
-  class Gallery {
-    constructor(images = [], thumbnails = true) {
-      this._PreviewArea = this.getPreviewArea();
-      this._ButtonArea = this.getButtonArea();
-      this._SliderArea = this.getSliderArea();
-      if (!this._PreviewArea || !this._ButtonArea || !this._SliderArea) {
-        return error('Failed to initialize Gallery, Check that you have included the required elements');
+    this.addImages(images);
+  };
+  // The three areas required in order to initialize the Gallery
+  getPreviewArea() {
+    return document.getElementById('#galleryPreviewArea');
+  };
+  getButtonArea() {
+    return document.getElementById('#galleryButtonArea');
+  };
+  getSliderArea() {
+    return document.getElementById('#gallerySliderArea');
+  };
+
+  addImages(images) {
+    images.forEach((image) => {
+      this.size = this.size + 1;
+      if (!noThumbnails) {
+        this.setThumbnail(image);
       }
+      this.setImage(image);
+    })
+  };
 
-      this.addImages(images);
+  setThumbnail(image) {
+    let alt = !image.alt ? "" : image.alt;
+    if (!image.thumbsrc) {
+      return error("thumbnail source not provided", image)
     }
-    // The three areas required in order to initialize the Gallery
-    getPreviewArea() {
-      return document.getElementById('#galleryPreviewArea');
-    }
-    getButtonArea() {
-      return document.getElementById('#galleryButtonArea');
-    }
-    getSliderArea() {
-      return document.getElementById('#gallerySliderArea');
-    }
-
-    addImages(images) {
-      images.forEach((image) => {
-        this.size = this.size + 1;
-        if (!noThumbnails) {
-          this.setThumbnail(image);
-        }
-        this.setImage(image);
+    let imgThumb = $(`<img src="${image.thumbsrc}" id="thumb-${this.size}" alt="${alt}" class="gallery-thumbnail hidden">`)
+    $(imgThumb).load(() => {
+      $(this._PreviewArea).append(imgThumb);
+      $(imgThumb).on('click', (e) => {
+        slideToImage(this.size);
       })
-    }
+    })
+  };
 
-    setThumbnail(image) {
-      let alt = !image.alt ? "" : image.alt;
-      if (!image.thumbsrc) {
-        return error("thumbnail source not provided", image)
-      }
-      let imgThumb = $(`<img src="${image.thumbsrc}" id="thumb-${this.size}" alt="${alt}" class="gallery-thumbnail hidden">`)
-      $(imgThumb).load(() => {
-        $(this._PreviewArea).append(imgThumb);
-        $(imgThumb).on('click', (e) => {
-          slideToImage(this.size);
-        })
-      })
+  setImage(image) {
+    let alt = !image.alt ? "" : image.alt;
+    if (!image.src) {
+      return error("image source not provided", image)
     }
+    let imgThumb = $(`<img src="${image.src}" id="image-${this.size}" alt="${alt}" class="gallery-image hidden">`)
+    $(imgThumb).load(() => {
+      $(this._PreviewArea).append(imgThumb);
+    })
+  };
 
-    setImage(image) {
-      let alt = !image.alt ? "" : image.alt;
-      if (!image.src) {
-        return error("image source not provided", image)
-      }
-      let imgThumb = $(`<img src="${image.src}" id="image-${this.size}" alt="${alt}" class="gallery-image hidden">`)
-      $(imgThumb).load(() => {
-        $(this._PreviewArea).append(imgThumb);
-      })
+  slideLeft() {
+    $('#galleryPreviewArea').animate({left: ($('#galleryPreviewArea').left() - $('#galleryPreviewArea').width())})
+  };
+
+  slideRight() {
+    $('#galleryPreviewArea').animate({left: ($('#galleryPreviewArea').left() + $('#galleryPreviewArea').width())})
+  };
+
+  slideToImage(posInGallery) {
+    $('#galleryPreviewArea').animate({left: (0 - ((posInGallery - 1) * $('#galleryPreviewArea').width()))});
+  };
+
+  error(err, object) {
+    if (object) {
+      console.log(err);
+      console.log(object);
+    } else {
+      console.log(err);
     }
-
-    slideLeft() {
-      $('#galleryPreviewArea').animate({left: ($('#galleryPreviewArea').left() - $('#galleryPreviewArea').width())})
-    }
-
-    slideRight() {
-      $('#galleryPreviewArea').animate({left: ($('#galleryPreviewArea').left() + $('#galleryPreviewArea').width())})
-    }
-
-    slideToImage(posInGallery) {
-      $('#galleryPreviewArea').animate({left: (0 - ((posInGallery - 1) * $('#galleryPreviewArea').width()))});
-    }
-
-    error(err, object) {
-      if (object) {
-        console.log(err);
-        console.log(object);
-      } else {
-        console.log(err);
-      }
-    }
-  }
-
+  };
 }
