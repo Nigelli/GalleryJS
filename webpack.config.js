@@ -1,13 +1,24 @@
 module.exports = {
-    entry  : './GalleryJs.js',
+    entry  : './src/Gallery.js',
     output : {
         path     : __dirname,
-        filename : './dist/galleryJs.dist.js'
+        filename : './dist/gallery.dist.js'
     },
     module : {
-        loaders: [ { 
+        loaders: [ 
+            { 
                 test   : /.js$/,
-                loader : 'babel-loader' 
+                loader : 'babel-loader',
+                options: {
+                    minified: true
+                }
+            },
+            { 
+                test   : /.html$/,
+                loader : 'html-loader',
+                options: {
+                    minimize: true
+                } 
             }
         ]
     }

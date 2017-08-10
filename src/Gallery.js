@@ -1,7 +1,9 @@
-import * as toolbar from "./toolbar.js";
-import * as previewBar from "./preview-bar.js";
-import * as sliderArea from "./slider-area.js";
-
+import * as toolbar from "./toolbar/toolbar.js";
+import * as previewBar from "./preview-bar/preview-bar.js";
+import * as sliderArea from "./slider-area/slider-area.js";
+import toolbarTemplate from "./toolbar/toolbar.html";
+import previewBarTemplate from "./preview-bar/preview-bar.html";
+import sliderAreaTemplate from "./slider-area/slider-area.html";
 
 // GalleryJs
 
