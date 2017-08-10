@@ -87,13 +87,20 @@
                 </div>
             </div>
             <div class="row">
-                <div id="galleryPreviewArea" class="col-lg-6" style="min-height:500px;"></div>
+                <div id="gallerySliderArea" class="col-lg-6" style="min-height:500px;"></div>
+                <div id="galleryToolbarArea" class="col-lg-6"></div>
+                <div id="galleryPreviewArea" class="col-lg-6"></div>
             </div>
         </div>
         <script type="text/javascript">
-            window.onload = function () {
-                var gallery1 = new LittleGalleryJS.Gallery([], true);
-            };
+            var gallery1 = new LittleGalleryJS.Gallery(
+                [
+                    ''
+                ], {
+                    sliderContainerID: 'gallerySliderArea', 
+                    toolbarContainerID: 'galleryToolbarArea'
+                }
+            );
         </script>
     </body>
 </html>

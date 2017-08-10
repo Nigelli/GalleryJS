@@ -1,3 +1,3 @@
-export class SliderArea {
+export default class SliderArea {
 
 }

@@ -1,3 +1,3 @@
-export class Toolbar {
+export default class Toolbar {
 
 }

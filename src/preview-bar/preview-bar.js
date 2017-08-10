@@ -1,3 +1,3 @@
-export class PreviewBar {
+export default class PreviewBar {
 
 }

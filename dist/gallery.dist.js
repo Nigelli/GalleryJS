@@ -70,34 +70,30 @@ var LittleGalleryJS =
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toolbar_toolbar_js__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__preview_bar_preview_bar_js__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__slider_area_slider_area_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toolbar_toolbar_html__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__toolbar_toolbar_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__toolbar_toolbar_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__preview_bar_preview_bar_html__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__preview_bar_preview_bar_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__preview_bar_preview_bar_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__slider_area_slider_area_html__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__slider_area_slider_area_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__slider_area_slider_area_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toolbar_toolbar_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__preview_bar_preview_bar_js__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__slider_area_slider_area_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__toolbar_toolbar_html__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__toolbar_toolbar_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__toolbar_toolbar_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__preview_bar_preview_bar_html__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__preview_bar_preview_bar_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__preview_bar_preview_bar_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__slider_area_slider_area_html__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__slider_area_slider_area_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__slider_area_slider_area_html__);
 // GalleryJs
-// Image should be passed into the Gallery as an object {string:src, string:thumbsrc, optional string:alt}
-// When initializing the Gallery an array off thumbnails can be passed in to the Gallery
-/* TODO:
-  1: add and remove loading image for thumbnails and images
-  2: work out the best way to manage the image slider for the main gallery
-  3: work out which animations/interaction shuld happen on the slider vs previews
-  5: load images from html elements attached to the gallery element
-  6: auto resize components to available parent containers
-*/class Gallery{constructor(images=[],thumbnails=true){this._PreviewArea=this.getPreviewArea();this._ButtonArea=this.getButtonArea();this._SliderArea=this.getSliderArea();if(!this._PreviewArea||!this._ButtonArea||!this._SliderArea){return error("Failed to initialize Gallery, Check that you have included the required elements")}this.addImages(images)}// The three areas required in order to initialize the Gallery
-getPreviewArea(){return document.getElementById("#galleryPreviewArea")}getButtonArea(){return document.getElementById("#galleryButtonArea")}getSliderArea(){return document.getElementById("#gallerySliderArea")}addImages(images){images.forEach(image=>{this.size=this.size+1;if(!noThumbnails){this.setThumbnail(image)}this.setImage(image)})}setThumbnail(image){let alt=!image.alt?"":image.alt;if(!image.thumbsrc){return error("thumbnail source not provided",image)}let imgThumb=$(`<img src="${image.thumbsrc}" id="thumb-${this.size}" alt="${alt}" class="gallery-thumbnail hidden">`);$(imgThumb).load(()=>{$(this._PreviewArea).append(imgThumb);$(imgThumb).on("click",e=>{slideToImage(this.size)})})}setImage(image){let alt=!image.alt?"":image.alt;if(!image.src){return error("image source not provided",image)}let imgThumb=$(`<img src="${image.src}" id="image-${this.size}" alt="${alt}" class="gallery-image hidden">`);$(imgThumb).load(()=>{$(this._PreviewArea).append(imgThumb)})}slideLeft(){$("#galleryPreviewArea").animate({left:$("#galleryPreviewArea").left()-$("#galleryPreviewArea").width()})}slideRight(){$("#galleryPreviewArea").animate({left:$("#galleryPreviewArea").left()+$("#galleryPreviewArea").width()})}slideToImage(posInGallery){$("#galleryPreviewArea").animate({left:0-(posInGallery-1)*$("#galleryPreviewArea").width()})}error(err,object){if(object){console.log(err);console.log(object)}else{console.log(err)}}}
+class Gallery{constructor(imgUrls,options){// Ensure image urls have been provide in an array.
+if(__WEBPACK_IMPORTED_MODULE_0__helpers_js__["a" /* default */].isArrayAndIsNotEmpty(imgUrls)){this._imgUrls=imgUrls}else{console.log("No Url's have been supplied or have not been supplied in the correct format. https://github.com/Nigelli/LittleGalleryJS");return}// Set Component ID's if provided 
+this._sliderContainerID=mapOptionIfSet(options,"sliderContainerID");this._toolbarContainerID=mapOptionIfSet(options,"toolbarContainerID");this._previewBarContainerID=mapOptionIfSet(options,"previewBarContainerID");if(this._sliderContainerID){this._slider=new __WEBPACK_IMPORTED_MODULE_3__slider_area_slider_area_js__["a" /* default */](this._sliderContainerID)}if(this._toolbarContainerID){this._toolbar=new __WEBPACK_IMPORTED_MODULE_1__toolbar_toolbar_js__["a" /* default */](this._toolbarContainerID)}if(this._previewBarContainerID){this._previewBar=new __WEBPACK_IMPORTED_MODULE_2__preview_bar_preview_bar_js__["a" /* default */](this._previewBarContainerID)}}}
+/* harmony export (immutable) */ __webpack_exports__["Gallery"] = Gallery;
+function mapOptionIfSet(options,option){if(options&&option){if(__WEBPACK_IMPORTED_MODULE_0__helpers_js__["a" /* default */].hasOwnProperty(options,option)){return options[option]}}return false}
 
 /***/ }),
 /* 1 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class Toolbar{}
-/* unused harmony export Toolbar */
+class Helpers{static isArray(obj){if(obj&&Object.prototype.toString.call(obj)==='[object Array]'){return true}return false}static isArrayAndIsNotEmpty(arr){if(arr&&Object.prototype.toString.call(arr)==='[object Array]'&&arr.length){return true}return false}static hasOwnProperty(obj,prop){var proto=obj.__proto__||obj.constructor.prototype;return prop in obj&&(!(prop in proto)||proto[prop]!==obj[prop])}}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Helpers;
 
 
 /***/ }),
@@ -105,8 +101,8 @@ class Toolbar{}
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class PreviewBar{}
-/* unused harmony export PreviewBar */
+class Toolbar{}
+/* harmony export (immutable) */ __webpack_exports__["a"] = Toolbar;
 
 
 /***/ }),
@@ -114,24 +110,33 @@ class PreviewBar{}
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class SliderArea{}
-/* unused harmony export SliderArea */
+class PreviewBar{}
+/* harmony export (immutable) */ __webpack_exports__["a"] = PreviewBar;
 
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "";
+"use strict";
+class SliderArea{}
+/* harmony export (immutable) */ __webpack_exports__["a"] = SliderArea;
+
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = "<div> <h3>this is the preview bar html</h3> <p>We need to display the thumbnails here</p> </div>";
+module.exports = "";
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports) {
+
+module.exports = "<div> <h3>this is the preview bar html</h3> <p>We need to display the thumbnails here</p> </div>";
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports) {
 
 module.exports = "";
