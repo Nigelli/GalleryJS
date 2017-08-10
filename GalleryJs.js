@@ -1,3 +1,8 @@
+import * as toolbar from "./toolbar.js";
+import * as previewBar from "./preview-bar.js";
+import * as sliderArea from "./slider-area.js";
+
+
 // GalleryJs
 
 // Image should be passed into the Gallery as an object {string:src, string:thumbsrc, optional string:alt}
@@ -84,7 +89,7 @@
     error(err, object) {
       if (object) {
         console.log(err);
-        console.log(object;
+        console.log(object);
       } else {
         console.log(err);
       }

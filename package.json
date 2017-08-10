@@ -1,0 +1,27 @@
+{
+  "name": "gallaryjs",
+  "version": "0.0.1",
+  "description": "Javascript Gallery Plugin",
+  "main": "GalleryJs.js",
+  "dependencies": {
+    "babel-loader": "^7.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nigelli/GalleryJS.git"
+  },
+  "keywords": [
+    "gallery",
+    "slideshow"
+  ],
+  "author": "Nigel Anderson",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nigelli/GalleryJS/issues"
+  },
+  "homepage": "https://github.com/Nigelli/GalleryJS#readme"
+}
