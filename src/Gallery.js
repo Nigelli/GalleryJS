@@ -10,7 +10,6 @@ export class Gallery {
     // Ensure image urls have been provide in an array.
     if (Helpers.isArrayAndIsNotEmpty(imgUrls)) {
       this._imgUrls = imgUrls;
-      
     } else {
       console.log("No Url's have been supplied or have not been supplied in the correct format. https://github.com/Nigelli/LittleGalleryJS");
       return;
@@ -23,10 +22,12 @@ export class Gallery {
 
     if (this._sliderContainerID) {
       this._slider = new SliderArea(this._sliderContainerID);
-
-      imgUrls.forEach(function(url) {
+      for (var i = 0; i < imgUrls.length; i++) {
+        this._slider.attachLoader(i);
+      }
+      imgUrls.forEach(function(url, i) {
         loadImage(url).then(img => {
-          this._slider.attachImage(img);
+          this._slider.attachImage(img, i);
         }, error => {
           console.log(error);
         })
@@ -51,7 +52,13 @@ function loadImage(url) {
     img.on('error', e => { 
       reject(`Image could not be loaded from url: ${url}`) ;
     });
-    img.attr("src", url);
+/*** Debug Only ***/
+    setTimeout(function() {
+      img.attr("src", url);
+    }, Math.random() * (5000 - 1000) + 1000);
+/*** ---------  ***/
+    // img.attr("src", url);
+    
   })
 }
 

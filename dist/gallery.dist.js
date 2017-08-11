@@ -173,12 +173,14 @@ var Gallery = exports.Gallery = function Gallery(imgUrls, options) {
 
   if (this._sliderContainerID) {
     this._slider = new _sliderArea2.default(this._sliderContainerID);
-
-    imgUrls.forEach(function (url) {
+    for (var i = 0; i < imgUrls.length; i++) {
+      this._slider.attachLoader(i);
+    }
+    imgUrls.forEach(function (url, i) {
       var _this = this;
 
       loadImage(url).then(function (img) {
-        _this._slider.attachImage(img);
+        _this._slider.attachImage(img, i);
       }, function (error) {
         console.log(error);
       });
@@ -201,7 +203,12 @@ function loadImage(url) {
     img.on('error', function (e) {
       reject("Image could not be loaded from url: " + url);
     });
-    img.attr("src", url);
+    /*** Debug Only ***/
+    setTimeout(function () {
+      img.attr("src", url);
+    }, Math.random() * (5000 - 1000) + 1000);
+    /*** ---------  ***/
+    // img.attr("src", url);
   });
 }
 
@@ -345,9 +352,20 @@ var SliderArea = function () {
     }
 
     _createClass(SliderArea, [{
+        key: "attachLoader",
+        value: function attachLoader(id) {
+            var loader = $("<div id=\"LGS-Loader-" + id + "\" class=\"LGS-Loader\"><p>Loading..</p></div>");
+            loader.css({ 'max-height': this._container.height() });
+            loader.css({ 'padding-top': this._container.height() / 2 - 20 });
+            loader.css({ 'max-width': this._container.width() });
+            this._container.find("#" + this._ID + "-" + this._templateBaseID + "-Slider").append(loader);
+        }
+    }, {
         key: "attachImage",
-        value: function attachImage(image) {
-            this._container.find("#" + this._ID + "-" + this._templateBaseID + "Slider").append(image);
+        value: function attachImage(image, id) {
+            $(image).css({ 'max-height': this._container.height() });
+            $(image).css({ 'max-width': this._container.width() });
+            this._container.find("#LGS-Loader-" + id).replaceWith($(image));
         }
     }]);
 
@@ -360,7 +378,7 @@ exports.default = SliderArea;
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=LGSslider class=LGSslider> <div id=LGSloader class=LGSloader> <p>Loading..</p> </div> </div>";
+module.exports = "<div id=LGS-Slider class=LGS-Slider> </div>";
 
 /***/ })
 /******/ ]);

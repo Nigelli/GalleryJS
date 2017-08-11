@@ -14,7 +14,17 @@ export default class SliderArea {
         this._container[0].innerHTML = Helpers.prependTemplateIds(Template, this._ID, this._templateBaseID);
     }
 
-    attachImage(image) {
-        this._container.find("#" + this._ID + "-" + this._templateBaseID + "Slider").append(image);
+    attachLoader(id) {
+        let loader = $(`<div id="LGS-Loader-${id}" class="LGS-Loader"><p>Loading..</p></div>`);
+        loader.css({'max-height':  this._container.height()});
+        loader.css({'padding-top':  this._container.height()/2-20});
+        loader.css({'max-width':  this._container.width()});
+        this._container.find(`#${this._ID}-${this._templateBaseID}-Slider`).append(loader);
+    }
+
+    attachImage(image, id) {
+        $(image).css({'max-height':  this._container.height()});
+        $(image).css({'max-width':  this._container.width()});
+        this._container.find(`#LGS-Loader-${id}`).replaceWith($(image));
     }
 }
