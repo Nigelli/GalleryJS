@@ -156,23 +156,29 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 // GalleryJs
 
 var Gallery = exports.Gallery = function Gallery(imgUrls, options) {
+  var _this = this;
+
   _classCallCheck(this, Gallery);
 
   // Ensure image urls have been provide in an array.
   if (_helpers2.default.isArrayAndIsNotEmpty(imgUrls)) {
     this._imgUrls = imgUrls;
+    loadImagesByUrl(this._imgUrls).then(function (images) {
+      _this._slider.attachImages(images);
+    }, function (error) {});
   } else {
     console.log("No Url's have been supplied or have not been supplied in the correct format. https://github.com/Nigelli/LittleGalleryJS");
     return;
   }
 
   // Set Component ID's if provided 
-  this._sliderContainerID = mapOptionIfSet(options, 'sliderContainerID');
-  this._toolbarContainerID = mapOptionIfSet(options, 'toolbarContainerID');
-  this._previewBarContainerID = mapOptionIfSet(options, 'previewBarContainerID');
+  this._sliderContainerID = getOptionIfSet(options, 'sliderContainerID');
+  this._toolbarContainerID = getOptionIfSet(options, 'toolbarContainerID');
+  this._previewBarContainerID = getOptionIfSet(options, 'previewBarContainerID');
 
   if (this._sliderContainerID) {
     this._slider = new _sliderArea2.default(this._sliderContainerID);
+    this._slider.attachImages();
   }
   if (this._toolbarContainerID) {
     this._toolbar = new _toolbar2.default(this._toolbarContainerID);
@@ -182,7 +188,25 @@ var Gallery = exports.Gallery = function Gallery(imgUrls, options) {
   }
 };
 
-function mapOptionIfSet(options, option) {
+function loadImagesByUrl(urls) {
+  var _this2 = this;
+
+  return new Promise(function (resolve, reject) {
+    var images = [];
+    urls.forEach(function (url) {
+      var img = $("<img>");
+      img.on('load', function () {
+        images.push(img);
+        if (images.length === urls.length) {
+          resolve(images);
+        }
+      });
+      img.attr("src", url);
+    }, _this2);
+  });
+}
+
+function getOptionIfSet(options, option) {
   if (options && option) {
     if (_helpers2.default.hasOwnProperty(options, option)) {
       return options[option];
@@ -311,7 +335,7 @@ var SliderArea = function () {
         _classCallCheck(this, SliderArea);
 
         this._container = $('#' + ID);
-        if (!container.length) {
+        if (!this._container.length) {
             console.log("No element with the ID " + ID + " can be found. check usage at https://github.com/Nigelli/LittleGalleryJS");
             return;
         }
@@ -324,7 +348,7 @@ var SliderArea = function () {
     _createClass(SliderArea, [{
         key: "attachImages",
         value: function attachImages(images) {
-            this._container.find("#" + this._ID + "-" + this._templateBaseID).append(images);
+            this._container.find("#" + this._ID + "-" + this._templateBaseID + "Slider").append(images);
         }
     }]);
 

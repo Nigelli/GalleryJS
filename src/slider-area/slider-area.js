@@ -4,7 +4,7 @@ import Helpers from "../helpers.js"
 export default class SliderArea {
     constructor(ID) {
         this._container = $('#' + ID)
-        if (!container.length) {
+        if (!this._container.length) {
             console.log(`No element with the ID ${ID} can be found. check usage at https://github.com/Nigelli/LittleGalleryJS`);
             return;
         }
@@ -15,6 +15,6 @@ export default class SliderArea {
     }
 
     attachImages(images) {
-        this._container.find("#" + this._ID + "-" + this._templateBaseID).append(images);
+        this._container.find("#" + this._ID + "-" + this._templateBaseID + "Slider").append(images);
     }
 }
