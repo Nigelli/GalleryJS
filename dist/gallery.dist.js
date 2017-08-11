@@ -156,16 +156,11 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 // GalleryJs
 
 var Gallery = exports.Gallery = function Gallery(imgUrls, options) {
-  var _this = this;
-
   _classCallCheck(this, Gallery);
 
   // Ensure image urls have been provide in an array.
   if (_helpers2.default.isArrayAndIsNotEmpty(imgUrls)) {
     this._imgUrls = imgUrls;
-    loadImagesByUrl(this._imgUrls).then(function (images) {
-      _this._slider.attachImages(images);
-    }, function (error) {});
   } else {
     console.log("No Url's have been supplied or have not been supplied in the correct format. https://github.com/Nigelli/LittleGalleryJS");
     return;
@@ -178,7 +173,16 @@ var Gallery = exports.Gallery = function Gallery(imgUrls, options) {
 
   if (this._sliderContainerID) {
     this._slider = new _sliderArea2.default(this._sliderContainerID);
-    this._slider.attachImages();
+
+    imgUrls.forEach(function (url) {
+      var _this = this;
+
+      loadImage(url).then(function (img) {
+        _this._slider.attachImage(img);
+      }, function (error) {
+        console.log(error);
+      });
+    }, this);
   }
   if (this._toolbarContainerID) {
     this._toolbar = new _toolbar2.default(this._toolbarContainerID);
@@ -188,21 +192,16 @@ var Gallery = exports.Gallery = function Gallery(imgUrls, options) {
   }
 };
 
-function loadImagesByUrl(urls) {
-  var _this2 = this;
-
+function loadImage(url) {
   return new Promise(function (resolve, reject) {
-    var images = [];
-    urls.forEach(function (url) {
-      var img = $("<img>");
-      img.on('load', function () {
-        images.push(img);
-        if (images.length === urls.length) {
-          resolve(images);
-        }
-      });
-      img.attr("src", url);
-    }, _this2);
+    var img = $("<img>");
+    img.on('load', function (e) {
+      resolve(e.currentTarget);
+    });
+    img.on('error', function (e) {
+      reject("Image could not be loaded from url: " + url);
+    });
+    img.attr("src", url);
   });
 }
 
@@ -346,9 +345,9 @@ var SliderArea = function () {
     }
 
     _createClass(SliderArea, [{
-        key: "attachImages",
-        value: function attachImages(images) {
-            this._container.find("#" + this._ID + "-" + this._templateBaseID + "Slider").append(images);
+        key: "attachImage",
+        value: function attachImage(image) {
+            this._container.find("#" + this._ID + "-" + this._templateBaseID + "Slider").append(image);
         }
     }]);
 

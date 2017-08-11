@@ -10,9 +10,7 @@ export class Gallery {
     // Ensure image urls have been provide in an array.
     if (Helpers.isArrayAndIsNotEmpty(imgUrls)) {
       this._imgUrls = imgUrls;
-      loadImagesByUrl(this._imgUrls).then(images => {
-        this._slider.attachImages(images);
-      }, error => {});
+      
     } else {
       console.log("No Url's have been supplied or have not been supplied in the correct format. https://github.com/Nigelli/LittleGalleryJS");
       return;
@@ -25,7 +23,15 @@ export class Gallery {
 
     if (this._sliderContainerID) {
       this._slider = new SliderArea(this._sliderContainerID);
-      this._slider.attachImages();
+
+      imgUrls.forEach(function(url) {
+        loadImage(url).then(img => {
+          this._slider.attachImage(img);
+        }, error => {
+          console.log(error);
+        })
+      }, this);
+
     }
     if (this._toolbarContainerID) {
       this._toolbar = new Toolbar(this._toolbarContainerID);
@@ -36,19 +42,16 @@ export class Gallery {
   }
 }
 
-function loadImagesByUrl(urls) {
+function loadImage(url) { 
   return new Promise((resolve, reject) => {
-    let images = [];
-    urls.forEach(function(url) {
-      let img = $(`<img>`); 
-      img.on('load', function() {
-        images.push(img);
-        if (images.length === urls.length) {
-          resolve(images);
-        }
-      })
-      img.attr("src", url);
-    }, this);
+    let img = $(`<img>`); 
+    img.on('load', e => { 
+      resolve(e.currentTarget);
+     });
+    img.on('error', e => { 
+      reject(`Image could not be loaded from url: ${url}`) ;
+    });
+    img.attr("src", url);
   })
 }
 

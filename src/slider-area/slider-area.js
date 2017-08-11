@@ -14,7 +14,7 @@ export default class SliderArea {
         this._container[0].innerHTML = Helpers.prependTemplateIds(Template, this._ID, this._templateBaseID);
     }
 
-    attachImages(images) {
-        this._container.find("#" + this._ID + "-" + this._templateBaseID + "Slider").append(images);
+    attachImage(image) {
+        this._container.find("#" + this._ID + "-" + this._templateBaseID + "Slider").append(image);
     }
 }
