@@ -27,8 +27,9 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Examples <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                <li><a href="#">Example 1</a></li>
-                                <li><a href="#">Example 2</a></li>
+                                <li><a href="#FullExample">Example 1</a></li>
+                                <li><a href="#PreviewOnlyExample">Example 2</a></li>
+                                <li><a href="#IndependentControlsExample">Example 3</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -47,7 +48,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3>Full Example</h1>
+                    <h3 id="FullExample">Full Example</h3>
                 </div>
             </div>
             <div class="row">
@@ -56,13 +57,15 @@
                 </div>
             </div>
             <div class="row">
-                <div id="galleryPreviewArea" class="col-lg-6" style="min-height:500px;"></div>
+                <div id="example1GalleryToolbarArea" class="col-lg-6"></div>
+                <div id="example1GallerySliderArea" class="col-lg-12" style="min-height:500px;"></div>
+                <div id="example1GalleryPreviewArea" class="col-lg-6"></div>
             </div>
         </div>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3>Preview Only Example</h1>
+                    <h3 id="PreviewOnlyExample">Preview Only Example</h3>
                 </div>
             </div>
             <div class="row">
@@ -71,14 +74,15 @@
                 </div>
             </div>
             <div class="row">
-                <div id="galleryPreviewArea" class="col-lg-6" style="min-height:500px;"></div>
+                <div id="example2GalleryToolbarArea" class="col-lg-6"></div>
+                <div id="example2GallerySliderArea" class="col-lg-6" style="min-height:500px;"></div>
             </div>
         </div>
         
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <h3>Indepdent Controls Example</h1>
+                    <h3 id="IndependentControlsExample">Independent Controls Example</h3>
                 </div>
             </div>
             <div class="row">
@@ -87,9 +91,9 @@
                 </div>
             </div>
             <div class="row">
-                <div id="gallerySliderArea" class="col-lg-6" style="min-height:500px;"></div>
-                <div id="galleryToolbarArea" class="col-lg-6"></div>
-                <div id="galleryPreviewArea" class="col-lg-6"></div>
+                <div id="example3GalleryToolbarArea" class="col-lg-6"></div>
+                <div id="example3GallerySliderArea" class="col-lg-12" style="min-height:500px;"></div>
+                <div id="example3GalleryPreviewArea" class="col-lg-6"></div>
             </div>
         </div>
         <script type="text/javascript">
@@ -97,8 +101,8 @@
                 [
                     ''
                 ], {
-                    sliderContainerID: 'gallerySliderArea', 
-                    toolbarContainerID: 'galleryToolbarArea'
+                    sliderContainerID: 'example1GallerySliderArea', 
+                    toolbarContainerID: 'example1GalleryToolbarArea'
                 }
             );
         </script>

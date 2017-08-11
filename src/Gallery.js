@@ -2,9 +2,6 @@ import Helpers from "./helpers.js";
 import Toolbar from "./toolbar/toolbar.js";
 import PreviewBar from "./preview-bar/preview-bar.js";
 import SliderArea from "./slider-area/slider-area.js";
-import toolbarTemplate from "./toolbar/toolbar.html";
-import previewBarTemplate from "./preview-bar/preview-bar.html";
-import sliderAreaTemplate from "./slider-area/slider-area.html";
 
 // GalleryJs
 

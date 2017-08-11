@@ -72,14 +72,8 @@ var LittleGalleryJS =
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_js__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toolbar_toolbar_js__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__preview_bar_preview_bar_js__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__slider_area_slider_area_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__toolbar_toolbar_html__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__toolbar_toolbar_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__toolbar_toolbar_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__preview_bar_preview_bar_html__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__preview_bar_preview_bar_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__preview_bar_preview_bar_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__slider_area_slider_area_html__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__slider_area_slider_area_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__slider_area_slider_area_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__preview_bar_preview_bar_js__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__slider_area_slider_area_js__ = __webpack_require__(6);
 // GalleryJs
 class Gallery{constructor(imgUrls,options){// Ensure image urls have been provide in an array.
 if(__WEBPACK_IMPORTED_MODULE_0__helpers_js__["a" /* default */].isArrayAndIsNotEmpty(imgUrls)){this._imgUrls=imgUrls}else{console.log("No Url's have been supplied or have not been supplied in the correct format. https://github.com/Nigelli/LittleGalleryJS");return}// Set Component ID's if provided 
@@ -92,7 +86,7 @@ function mapOptionIfSet(options,option){if(options&&option){if(__WEBPACK_IMPORTE
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class Helpers{static isArray(obj){if(obj&&Object.prototype.toString.call(obj)==='[object Array]'){return true}return false}static isArrayAndIsNotEmpty(arr){if(arr&&Object.prototype.toString.call(arr)==='[object Array]'&&arr.length){return true}return false}static hasOwnProperty(obj,prop){var proto=obj.__proto__||obj.constructor.prototype;return prop in obj&&(!(prop in proto)||proto[prop]!==obj[prop])}}
+class Helpers{static isArray(obj){if(obj&&Object.prototype.toString.call(obj)==='[object Array]'){return true}return false}static isArrayAndIsNotEmpty(arr){if(arr&&Object.prototype.toString.call(arr)==='[object Array]'&&arr.length){return true}return false}static hasOwnProperty(obj,prop){let proto=obj.__proto__||obj.constructor.prototype;return prop in obj&&(!(prop in proto)||proto[prop]!==obj[prop])}static prependTemplateIds(template,prependId,currentId){let replace='id='+currentId;let replaceWith='id='+prependId+'-'+currentId;var re=new RegExp(replace,'g');return template.replace(re,replaceWith)}}
 /* harmony export (immutable) */ __webpack_exports__["a"] = Helpers;
 
 
@@ -101,45 +95,54 @@ class Helpers{static isArray(obj){if(obj&&Object.prototype.toString.call(obj)===
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class Toolbar{}
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toolbar_html__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toolbar_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__toolbar_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_js__ = __webpack_require__(1);
+class Toolbar{constructor(ID){let container=$("#"+ID);if(!container.length){console.log(`No element with the ID ${ID} can be found. check usage at https://github.com/Nigelli/LittleGalleryJS`);return}this._ID=ID;this._template=__WEBPACK_IMPORTED_MODULE_1__helpers_js__["a" /* default */].prependTemplateIds(__WEBPACK_IMPORTED_MODULE_0__toolbar_html___default.a,ID,"LGS");container[0].innerHTML=this._template}}
 /* harmony export (immutable) */ __webpack_exports__["a"] = Toolbar;
 
 
 /***/ }),
 /* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-class PreviewBar{}
-/* harmony export (immutable) */ __webpack_exports__["a"] = PreviewBar;
-
+module.exports = "<div> <h3>this is the toolbar html</h3> <p>We need to display the slide controls here</p> </div>";
 
 /***/ }),
 /* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-class SliderArea{}
-/* harmony export (immutable) */ __webpack_exports__["a"] = SliderArea;
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__preview_bar_html__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__preview_bar_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__preview_bar_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_js__ = __webpack_require__(1);
+class PreviewBar{constructor(ID){let container=$("#"+ID);if(!container.length){console.log(`No element with the ID ${ID} can be found. check usage at https://github.com/Nigelli/LittleGalleryJS`);return}this._ID=ID;this._template=__WEBPACK_IMPORTED_MODULE_1__helpers_js__["a" /* default */].prependTemplateIds(__WEBPACK_IMPORTED_MODULE_0__preview_bar_html___default.a,ID,"LGS");container[0].innerHTML=this._template}}
+/* harmony export (immutable) */ __webpack_exports__["a"] = PreviewBar;
 
 
 /***/ }),
 /* 5 */
 /***/ (function(module, exports) {
 
-module.exports = "";
+module.exports = "<div> <h3>this is the preview bar html</h3> <p>We need to display the thumbnails here</p> </div>";
 
 /***/ }),
 /* 6 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-module.exports = "<div> <h3>this is the preview bar html</h3> <p>We need to display the thumbnails here</p> </div>";
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__slider_area_html__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__slider_area_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__slider_area_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_js__ = __webpack_require__(1);
+class SliderArea{constructor(ID){let container=$("#"+ID);if(!container.length){console.log(`No element with the ID ${ID} can be found. check usage at https://github.com/Nigelli/LittleGalleryJS`);return}this._ID=ID;this._template=__WEBPACK_IMPORTED_MODULE_1__helpers_js__["a" /* default */].prependTemplateIds(__WEBPACK_IMPORTED_MODULE_0__slider_area_html___default.a,ID,"LGS");container[0].innerHTML=this._template}}
+/* harmony export (immutable) */ __webpack_exports__["a"] = SliderArea;
+
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = "";
+module.exports = "<div id=LGSslider> <div id=LGS1> </div> <div id=LGS2> </div> <div id=LGS3> </div> </div>";
 
 /***/ })
 /******/ ]);
