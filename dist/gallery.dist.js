@@ -264,7 +264,7 @@ exports.default = Toolbar;
 /* 3 */
 /***/ (function(module, exports) {
 
-module.exports = "<div> <h3>this is the toolbar html</h3> <p>We need to display the slide controls here</p> </div>";
+module.exports = "<div id=LGS-Toolbar class=LGS-Toolbar> </div>";
 
 /***/ }),
 /* 4 */
