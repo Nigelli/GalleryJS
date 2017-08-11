@@ -18,21 +18,31 @@ Built using Webpack so super easy to build yourself.
 
 ## Usage
 
-Add the following tag to the header of your page. making sure you set the src to the location of little gallary.
-`<script src="/location/of/littlegalleryjs.dist.js"></script>`
+Add the following tags inside the `<head></head>` on your page. Make sure you set the src and href to the location of the LittleGallaryJS .js & .css files.
+```
+<head>
+    <link rel="stylesheet" href="./dist/gallery.dist.css">
+    <script src="/location/of/littlegalleryjs.dist.js"></script>
+</head>
+```
 Add an script tag at the bottom of your `body` tag.
 You need to create a new instance of the gallery inside this tag. See the example below.
 
 ```
-var gallery1 = new LittleGalleryJS.Gallery(
-   [
-       '/path/to/image1.jpg'
-   ],
-   {
-       sliderContainerID: 'gallerySliderArea', 
-       toolbarContainerID: 'galleryToolbarArea' 
-   }
-);
+<body>
+...
+    <script type="text/JavaScript">
+        var myGallery1 = new LittleGalleryJS.Gallery(
+            [
+                '/path/to/image1.jpg'
+            ],
+            {
+                sliderContainerID: 'gallerySliderArea', 
+                toolbarContainerID: 'galleryToolbarArea' 
+            }
+        );
+    <script>
+<body>
 ```
 
 This will add a new gallery with the main slider with seperate controls.
