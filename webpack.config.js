@@ -13,8 +13,8 @@ module.exports = {
             { 
                 test   : /.js$/,
                 loader : 'babel-loader',
-                options: {
-                    minified: true
+                query: {
+                    presets: ['es2015']
                 }
             },
             { 

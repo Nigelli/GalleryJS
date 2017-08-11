@@ -61,46 +61,174 @@ var LittleGalleryJS =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_js__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__toolbar_toolbar_js__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__preview_bar_preview_bar_js__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__slider_area_slider_area_js__ = __webpack_require__(6);
-// GalleryJs
-class Gallery{constructor(imgUrls,options){// Ensure image urls have been provide in an array.
-if(__WEBPACK_IMPORTED_MODULE_0__helpers_js__["a" /* default */].isArrayAndIsNotEmpty(imgUrls)){this._imgUrls=imgUrls}else{console.log("No Url's have been supplied or have not been supplied in the correct format. https://github.com/Nigelli/LittleGalleryJS");return}// Set Component ID's if provided 
-this._sliderContainerID=mapOptionIfSet(options,"sliderContainerID");this._toolbarContainerID=mapOptionIfSet(options,"toolbarContainerID");this._previewBarContainerID=mapOptionIfSet(options,"previewBarContainerID");if(this._sliderContainerID){this._slider=new __WEBPACK_IMPORTED_MODULE_3__slider_area_slider_area_js__["a" /* default */](this._sliderContainerID)}if(this._toolbarContainerID){this._toolbar=new __WEBPACK_IMPORTED_MODULE_1__toolbar_toolbar_js__["a" /* default */](this._toolbarContainerID)}if(this._previewBarContainerID){this._previewBar=new __WEBPACK_IMPORTED_MODULE_2__preview_bar_preview_bar_js__["a" /* default */](this._previewBarContainerID)}}}
-/* harmony export (immutable) */ __webpack_exports__["Gallery"] = Gallery;
-function mapOptionIfSet(options,option){if(options&&option){if(__WEBPACK_IMPORTED_MODULE_0__helpers_js__["a" /* default */].hasOwnProperty(options,option)){return options[option]}}return false}
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Helpers = function () {
+    function Helpers() {
+        _classCallCheck(this, Helpers);
+    }
+
+    _createClass(Helpers, null, [{
+        key: 'isArray',
+        value: function isArray(obj) {
+            if (obj && Object.prototype.toString.call(obj) === '[object Array]') {
+                return true;
+            }
+            return false;
+        }
+    }, {
+        key: 'isArrayAndIsNotEmpty',
+        value: function isArrayAndIsNotEmpty(arr) {
+            if (arr && Object.prototype.toString.call(arr) === '[object Array]' && arr.length) {
+                return true;
+            }
+            return false;
+        }
+    }, {
+        key: 'hasOwnProperty',
+        value: function hasOwnProperty(obj, prop) {
+            var proto = obj.__proto__ || obj.constructor.prototype;
+            return prop in obj && (!(prop in proto) || proto[prop] !== obj[prop]);
+        }
+    }, {
+        key: 'prependTemplateIds',
+        value: function prependTemplateIds(template, prependId, currentId) {
+            var replace = 'id=' + currentId;
+            var replaceWith = 'id=' + prependId + '-' + currentId;
+            var re = new RegExp(replace, "g");
+            return template.replace(re, replaceWith);
+        }
+    }]);
+
+    return Helpers;
+}();
+
+exports.default = Helpers;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-class Helpers{static isArray(obj){if(obj&&Object.prototype.toString.call(obj)==='[object Array]'){return true}return false}static isArrayAndIsNotEmpty(arr){if(arr&&Object.prototype.toString.call(arr)==='[object Array]'&&arr.length){return true}return false}static hasOwnProperty(obj,prop){let proto=obj.__proto__||obj.constructor.prototype;return prop in obj&&(!(prop in proto)||proto[prop]!==obj[prop])}static prependTemplateIds(template,prependId,currentId){let replace='id='+currentId;let replaceWith='id='+prependId+'-'+currentId;var re=new RegExp(replace,'g');return template.replace(re,replaceWith)}}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Helpers;
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Gallery = undefined;
+
+var _helpers = __webpack_require__(0);
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
+var _toolbar = __webpack_require__(2);
+
+var _toolbar2 = _interopRequireDefault(_toolbar);
+
+var _previewBar = __webpack_require__(4);
+
+var _previewBar2 = _interopRequireDefault(_previewBar);
+
+var _sliderArea = __webpack_require__(6);
+
+var _sliderArea2 = _interopRequireDefault(_sliderArea);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// GalleryJs
+
+var Gallery = exports.Gallery = function Gallery(imgUrls, options) {
+  _classCallCheck(this, Gallery);
+
+  // Ensure image urls have been provide in an array.
+  if (_helpers2.default.isArrayAndIsNotEmpty(imgUrls)) {
+    this._imgUrls = imgUrls;
+  } else {
+    console.log("No Url's have been supplied or have not been supplied in the correct format. https://github.com/Nigelli/LittleGalleryJS");
+    return;
+  }
+
+  // Set Component ID's if provided 
+  this._sliderContainerID = mapOptionIfSet(options, 'sliderContainerID');
+  this._toolbarContainerID = mapOptionIfSet(options, 'toolbarContainerID');
+  this._previewBarContainerID = mapOptionIfSet(options, 'previewBarContainerID');
+
+  if (this._sliderContainerID) {
+    this._slider = new _sliderArea2.default(this._sliderContainerID);
+  }
+  if (this._toolbarContainerID) {
+    this._toolbar = new _toolbar2.default(this._toolbarContainerID);
+  }
+  if (this._previewBarContainerID) {
+    this._previewBar = new _previewBar2.default(this._previewBarContainerID);
+  }
+};
+
+function mapOptionIfSet(options, option) {
+  if (options && option) {
+    if (_helpers2.default.hasOwnProperty(options, option)) {
+      return options[option];
+    }
+  }
+  return false;
+}
 
 /***/ }),
 /* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toolbar_html__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__toolbar_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__toolbar_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_js__ = __webpack_require__(1);
-class Toolbar{constructor(ID){let container=$("#"+ID);if(!container.length){console.log(`No element with the ID ${ID} can be found. check usage at https://github.com/Nigelli/LittleGalleryJS`);return}this._ID=ID;this._template=__WEBPACK_IMPORTED_MODULE_1__helpers_js__["a" /* default */].prependTemplateIds(__WEBPACK_IMPORTED_MODULE_0__toolbar_html___default.a,ID,"LGS");container[0].innerHTML=this._template}}
-/* harmony export (immutable) */ __webpack_exports__["a"] = Toolbar;
 
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _toolbar = __webpack_require__(3);
+
+var _toolbar2 = _interopRequireDefault(_toolbar);
+
+var _helpers = __webpack_require__(0);
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Toolbar = function Toolbar(ID) {
+    _classCallCheck(this, Toolbar);
+
+    var container = $('#' + ID);
+    if (!container.length) {
+        console.log("No element with the ID " + ID + " can be found. check usage at https://github.com/Nigelli/LittleGalleryJS");
+        return;
+    }
+    this._ID = ID;
+    this._template = _helpers2.default.prependTemplateIds(_toolbar2.default, ID, 'LGS');
+
+    container[0].innerHTML = this._template;
+};
+
+exports.default = Toolbar;
 
 /***/ }),
 /* 3 */
@@ -110,15 +238,42 @@ module.exports = "<div> <h3>this is the toolbar html</h3> <p>We need to display 
 
 /***/ }),
 /* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__preview_bar_html__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__preview_bar_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__preview_bar_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_js__ = __webpack_require__(1);
-class PreviewBar{constructor(ID){let container=$("#"+ID);if(!container.length){console.log(`No element with the ID ${ID} can be found. check usage at https://github.com/Nigelli/LittleGalleryJS`);return}this._ID=ID;this._template=__WEBPACK_IMPORTED_MODULE_1__helpers_js__["a" /* default */].prependTemplateIds(__WEBPACK_IMPORTED_MODULE_0__preview_bar_html___default.a,ID,"LGS");container[0].innerHTML=this._template}}
-/* harmony export (immutable) */ __webpack_exports__["a"] = PreviewBar;
 
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _previewBar = __webpack_require__(5);
+
+var _previewBar2 = _interopRequireDefault(_previewBar);
+
+var _helpers = __webpack_require__(0);
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var PreviewBar = function PreviewBar(ID) {
+    _classCallCheck(this, PreviewBar);
+
+    var container = $('#' + ID);
+    if (!container.length) {
+        console.log("No element with the ID " + ID + " can be found. check usage at https://github.com/Nigelli/LittleGalleryJS");
+        return;
+    }
+    this._ID = ID;
+    this._template = _helpers2.default.prependTemplateIds(_previewBar2.default, ID, 'LGS');
+
+    container[0].innerHTML = this._template;
+};
+
+exports.default = PreviewBar;
 
 /***/ }),
 /* 5 */
@@ -128,21 +283,61 @@ module.exports = "<div> <h3>this is the preview bar html</h3> <p>We need to disp
 
 /***/ }),
 /* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__slider_area_html__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__slider_area_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__slider_area_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helpers_js__ = __webpack_require__(1);
-class SliderArea{constructor(ID){let container=$("#"+ID);if(!container.length){console.log(`No element with the ID ${ID} can be found. check usage at https://github.com/Nigelli/LittleGalleryJS`);return}this._ID=ID;this._template=__WEBPACK_IMPORTED_MODULE_1__helpers_js__["a" /* default */].prependTemplateIds(__WEBPACK_IMPORTED_MODULE_0__slider_area_html___default.a,ID,"LGS");container[0].innerHTML=this._template}}
-/* harmony export (immutable) */ __webpack_exports__["a"] = SliderArea;
 
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _sliderArea = __webpack_require__(7);
+
+var _sliderArea2 = _interopRequireDefault(_sliderArea);
+
+var _helpers = __webpack_require__(0);
+
+var _helpers2 = _interopRequireDefault(_helpers);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var SliderArea = function () {
+    function SliderArea(ID) {
+        _classCallCheck(this, SliderArea);
+
+        this._container = $('#' + ID);
+        if (!container.length) {
+            console.log("No element with the ID " + ID + " can be found. check usage at https://github.com/Nigelli/LittleGalleryJS");
+            return;
+        }
+        this._templateBaseID = "LGS";
+        this._ID = ID;
+
+        this._container[0].innerHTML = _helpers2.default.prependTemplateIds(_sliderArea2.default, this._ID, this._templateBaseID);
+    }
+
+    _createClass(SliderArea, [{
+        key: "attachImages",
+        value: function attachImages(images) {
+            this._container.find("#" + this._ID + "-" + this._templateBaseID).append(images);
+        }
+    }]);
+
+    return SliderArea;
+}();
+
+exports.default = SliderArea;
 
 /***/ }),
 /* 7 */
 /***/ (function(module, exports) {
 
-module.exports = "<div id=LGSslider> <div id=LGS1> </div> <div id=LGS2> </div> <div id=LGS3> </div> </div>";
+module.exports = "<div id=LGSslider class=LGSslider> <div id=LGSloader class=LGSloader> <p>Loading..</p> </div> </div>";
 
 /***/ })
 /******/ ]);
