@@ -1,4 +1,4 @@
-export default class Helpers {
+export default class Utils {
     static isArray(obj) {
         if (obj && Object.prototype.toString.call( obj ) === '[object Array]') {
             return true

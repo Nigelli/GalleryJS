@@ -1,5 +1,5 @@
 import Template from "./toolbar.html";
-import Helpers from "../helpers.js"
+import Utils from "../utilities/utils.js"
 
 export default class Toolbar {
     constructor(ID) {
@@ -9,7 +9,7 @@ export default class Toolbar {
             return;
         }
         this._ID = ID;
-        this._template = Helpers.prependTemplateIds(Template, ID, 'LGS');
+        this._template = Utils.prependTemplateIds(Template, ID, 'LGS');
         
         container[0].innerHTML = this._template;
     }

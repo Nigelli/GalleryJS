@@ -1,4 +1,4 @@
-import Helpers from "./helpers.js";
+import Utils from "./utilities/utils.js";
 import Toolbar from "./toolbar/toolbar.js";
 import PreviewBar from "./preview-bar/preview-bar.js";
 import SliderArea from "./slider-area/slider-area.js";
@@ -8,7 +8,7 @@ import SliderArea from "./slider-area/slider-area.js";
 export class Gallery {
   constructor(imgUrls, options) {
     // Ensure image urls have been provide in an array.
-    if (Helpers.isArrayAndIsNotEmpty(imgUrls)) {
+    if (Utils.isArrayAndIsNotEmpty(imgUrls)) {
       this._imgUrls = imgUrls;
     } else {
       console.log("No Url's have been supplied or have not been supplied in the correct format. https://github.com/Nigelli/LittleGalleryJS");
@@ -64,7 +64,7 @@ function loadImage(url) {
 
 function getOptionIfSet(options, option) {
   if (options && option) {
-      if (Helpers.hasOwnProperty(options, option)) {
+      if (Utils.hasOwnProperty(options, option)) {
         return options[option];
       }
   }

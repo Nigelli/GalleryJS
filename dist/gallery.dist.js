@@ -79,12 +79,12 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Helpers = function () {
-    function Helpers() {
-        _classCallCheck(this, Helpers);
+var Utils = function () {
+    function Utils() {
+        _classCallCheck(this, Utils);
     }
 
-    _createClass(Helpers, null, [{
+    _createClass(Utils, null, [{
         key: 'isArray',
         value: function isArray(obj) {
             if (obj && Object.prototype.toString.call(obj) === '[object Array]') {
@@ -116,10 +116,10 @@ var Helpers = function () {
         }
     }]);
 
-    return Helpers;
+    return Utils;
 }();
 
-exports.default = Helpers;
+exports.default = Utils;
 
 /***/ }),
 /* 1 */
@@ -133,9 +133,9 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Gallery = undefined;
 
-var _helpers = __webpack_require__(0);
+var _utils = __webpack_require__(0);
 
-var _helpers2 = _interopRequireDefault(_helpers);
+var _utils2 = _interopRequireDefault(_utils);
 
 var _toolbar = __webpack_require__(2);
 
@@ -159,7 +159,7 @@ var Gallery = exports.Gallery = function Gallery(imgUrls, options) {
   _classCallCheck(this, Gallery);
 
   // Ensure image urls have been provide in an array.
-  if (_helpers2.default.isArrayAndIsNotEmpty(imgUrls)) {
+  if (_utils2.default.isArrayAndIsNotEmpty(imgUrls)) {
     this._imgUrls = imgUrls;
   } else {
     console.log("No Url's have been supplied or have not been supplied in the correct format. https://github.com/Nigelli/LittleGalleryJS");
@@ -214,7 +214,7 @@ function loadImage(url) {
 
 function getOptionIfSet(options, option) {
   if (options && option) {
-    if (_helpers2.default.hasOwnProperty(options, option)) {
+    if (_utils2.default.hasOwnProperty(options, option)) {
       return options[option];
     }
   }
@@ -236,9 +236,9 @@ var _toolbar = __webpack_require__(3);
 
 var _toolbar2 = _interopRequireDefault(_toolbar);
 
-var _helpers = __webpack_require__(0);
+var _utils = __webpack_require__(0);
 
-var _helpers2 = _interopRequireDefault(_helpers);
+var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -253,7 +253,7 @@ var Toolbar = function Toolbar(ID) {
         return;
     }
     this._ID = ID;
-    this._template = _helpers2.default.prependTemplateIds(_toolbar2.default, ID, 'LGS');
+    this._template = _utils2.default.prependTemplateIds(_toolbar2.default, ID, 'LGS');
 
     container[0].innerHTML = this._template;
 };
@@ -281,9 +281,9 @@ var _previewBar = __webpack_require__(5);
 
 var _previewBar2 = _interopRequireDefault(_previewBar);
 
-var _helpers = __webpack_require__(0);
+var _utils = __webpack_require__(0);
 
-var _helpers2 = _interopRequireDefault(_helpers);
+var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -298,7 +298,7 @@ var PreviewBar = function PreviewBar(ID) {
         return;
     }
     this._ID = ID;
-    this._template = _helpers2.default.prependTemplateIds(_previewBar2.default, ID, 'LGS');
+    this._template = _utils2.default.prependTemplateIds(_previewBar2.default, ID, 'LGS');
 
     container[0].innerHTML = this._template;
 };
@@ -328,9 +328,9 @@ var _sliderArea = __webpack_require__(7);
 
 var _sliderArea2 = _interopRequireDefault(_sliderArea);
 
-var _helpers = __webpack_require__(0);
+var _utils = __webpack_require__(0);
 
-var _helpers2 = _interopRequireDefault(_helpers);
+var _utils2 = _interopRequireDefault(_utils);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -348,7 +348,7 @@ var SliderArea = function () {
         this._templateBaseID = "LGS";
         this._ID = ID;
 
-        this._container[0].innerHTML = _helpers2.default.prependTemplateIds(_sliderArea2.default, this._ID, this._templateBaseID);
+        this._container[0].innerHTML = _utils2.default.prependTemplateIds(_sliderArea2.default, this._ID, this._templateBaseID);
     }
 
     _createClass(SliderArea, [{

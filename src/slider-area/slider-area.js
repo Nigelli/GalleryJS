@@ -1,5 +1,5 @@
 import Template from "./slider-area.html";
-import Helpers from "../helpers.js"
+import Utils from "../utilities/utils.js"
 
 export default class SliderArea {
     constructor(ID) {
@@ -11,7 +11,7 @@ export default class SliderArea {
         this._templateBaseID = "LGS";
         this._ID = ID;
         
-        this._container[0].innerHTML = Helpers.prependTemplateIds(Template, this._ID, this._templateBaseID);
+        this._container[0].innerHTML = Utils.prependTemplateIds(Template, this._ID, this._templateBaseID);
     }
 
     attachLoader(id) {
